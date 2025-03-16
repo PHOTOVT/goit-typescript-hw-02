@@ -6,7 +6,6 @@ import LoadMoreButton from "./components/LoadMoreButton/LoadMoreButton";
 import Loader from "./components/Loader/Loader";
 import ImageModal from "./components/ImageModal/ImageModal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import { AiOutlinePicture } from "react-icons/ai";
 import toast, { Toaster } from "react-hot-toast";
 import "./App.css";
 
@@ -54,7 +53,8 @@ function App() {
     author: "",
     likes: 0,
   });
-  const galleryRef = useRef<HTMLImageElement>(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]); // Array to store refs for each image
   const [errorMsg, setErrorMsg] = useState<string>("");
   const PERPAGE: string = "15";
 
@@ -76,7 +76,7 @@ function App() {
           `https://api.unsplash.com/search/photos?${searchParams}`,
           {
             headers: {
-              Authorization: `Client-ID bF_HerDN5h7a7WozJpD-AEWD08N_mhzLLSreF6YpFxA`,
+              Authorization: `Client-ID 7qv9ndahgpK4rWD4WpyIdzGONESgJoJBlL2AohgaHuE`,
             },
           }
         );
@@ -156,7 +156,7 @@ function App() {
   const scrollWindow = (): void => {
     if (galleryRef.current)
       window.scrollBy({
-        top: galleryRef.current.height * 3,
+        top: galleryRef.current.clientHeight * 3,
         behavior: "smooth",
       });
   };
@@ -166,12 +166,12 @@ function App() {
       <SearchBar onSubmit={handleSearch} />
       <div style={{ width: "100%", height: "120px" }}></div>
       <Toaster position="top-left" reverseOrder={true} />
-      {!(total > 0) && <AiOutlinePicture className="bgIcon" />}
       {total > 0 && (
         <ImageGallery
           lastImageRef={galleryRef}
           data={imgData}
           onModal={handleOpenModal}
+          imageRefs={imageRefs}
         />
       )}
       {!loading && <ErrorMessage text={errorMsg} />}

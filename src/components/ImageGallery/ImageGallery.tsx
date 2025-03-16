@@ -1,8 +1,8 @@
 import ImageCard from "../ImageCard/ImageCard";
+import css from "./ImageGallery.module.css";
 import { RefObject } from "react";
 import { Image } from "../../App";
 import { ModalTypes } from "../../App";
-import css from "./ImageGallery.module.css";
 
 type Props = {
   data: Image[];
