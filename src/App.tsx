@@ -53,8 +53,7 @@ function App() {
     author: "",
     likes: 0,
   });
-  const galleryRef = useRef<HTMLDivElement | null>(null);
-  const imageRefs = useRef<(HTMLImageElement | null)[]>([]); // Array to store refs for each image
+  const galleryRef = useRef<HTMLLIElement | null>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
   const PERPAGE: string = "15";
 
@@ -122,13 +121,7 @@ function App() {
   };
 
   const checkPages = (dataPages: number): void => {
-    if (dataPages > 1) {
-      setLoadMoreButtonState(true);
-    }
-
-    if (currentPage >= dataPages) {
-      setLoadMoreButtonState(false);
-    }
+    setLoadMoreButtonState(dataPages > 1 && currentPage < dataPages);
   };
 
   const handleOpenModal = ({
@@ -171,7 +164,6 @@ function App() {
           lastImageRef={galleryRef}
           data={imgData}
           onModal={handleOpenModal}
-          imageRefs={imageRefs}
         />
       )}
       {!loading && <ErrorMessage text={errorMsg} />}
