@@ -1,0 +1,106 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  background-color: #010910d9;
+}
+
+.modal {
+  min-width: 55%;
+  max-width: 90%;
+  height: 80%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #ffffff;
+  outline: none;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+.modal .modalWrap {
+  width: 100%;
+  min-height: 70px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: -1px;
+  color: #fff;
+  background: #000000bf;
+  box-sizing: border-box;
+}
+
+.modal .modalWrap .modalDescr {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.modal .modalWrap h2 {
+  /* max-width: 60%; */
+  font-size: 20px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+
+.modal .modalWrap p {
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid #fff;
+}
+
+.modal button {
+  color: #fff;
+  background: none;
+}
+
+.modal button:hover {
+  border: 1px solid #fff;
+}
+
+.modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 450px) {
+  .modal {
+    width: 100%;
+    height: 60%;
+  }
+
+  .modal .modalWrap {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .modal img {
+    object-fit: cover;
+  }
+
+  .modal .modalWrap h2 {
+    max-width: 100%;
+  }
+
+  .modal .modalWrap p {
+    width: 50%;
+    margin: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+}
